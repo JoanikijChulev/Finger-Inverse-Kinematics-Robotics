@@ -1,0 +1,375 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15500,        367]
+NotebookOptionsPosition[     14970,        349]
+NotebookOutlinePosition[     15415,        366]
+CellTagsIndexPosition[     15372,        363]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "Lm", ",", "Lp", ",", "Ld", ",", "Jm", ",", "Jp", ",", "T", ",", "x", 
+        ",", "y", ",", "objectColor"}], "}"}], ",", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Average", " ", "lengths", " ", "of", " ", "the", " ", "phalanges"}], 
+       "*)"}], 
+      RowBox[{
+       RowBox[{"Lm", "=", "39.8"}], ";", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Length", " ", "of", " ", "the", " ", "base", " ", "phalanx"}], 
+        "*)"}], 
+       RowBox[{"Lp", "=", "22.4"}], ";", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Length", " ", "of", " ", "the", " ", "middle", " ", "phalanx"}], 
+        "*)"}], 
+       RowBox[{"Ld", "=", "15.8"}], ";", 
+       RowBox[{"(*", 
+        RowBox[{"Length", " ", "of", " ", "the", " ", "tip", " ", "phalanx"}],
+         "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Calculate", " ", "joint", " ", "positions"}], "*)"}], 
+       RowBox[{"Jm", "=", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Lm", "*", 
+           RowBox[{"Cos", "[", "\[Theta]m", "]"}]}], ",", 
+          RowBox[{"Lm", "*", 
+           RowBox[{"Sin", "[", "\[Theta]m", "]"}]}]}], "}"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Jp", "=", 
+        RowBox[{"Jm", "+", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Lp", "*", 
+            RowBox[{"Cos", "[", 
+             RowBox[{"\[Theta]m", "+", "\[Theta]p"}], "]"}]}], ",", 
+           RowBox[{"Lp", "*", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"\[Theta]m", "+", "\[Theta]p"}], "]"}]}]}], "}"}]}]}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"T", "=", 
+        RowBox[{"Jp", "+", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Ld", "*", 
+            RowBox[{"Cos", "[", 
+             RowBox[{"\[Theta]m", "+", "\[Theta]p", "+", "\[Theta]d"}], 
+             "]"}]}], ",", 
+           RowBox[{"Ld", "*", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"\[Theta]m", "+", "\[Theta]p", "+", "\[Theta]d"}], 
+             "]"}]}]}], "}"}]}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Calculate", " ", "fingertip", " ", "position"}], "*)"}], 
+       RowBox[{"x", "=", 
+        RowBox[{"T", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"y", "=", 
+        RowBox[{"T", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Check", " ", "if", " ", "fingertip", " ", "touches", " ", "object", 
+         " ", "O"}], "*)"}], 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"y", "<=", 
+          RowBox[{"-", "18"}]}], ",", 
+         RowBox[{"objectColor", "=", "Green"}], ",", 
+         RowBox[{"objectColor", "=", "Red"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Display", " ", "the", " ", "fingertip", " ", "position", " ", "and", 
+         " ", "object", " ", "O"}], "*)"}], 
+       RowBox[{"Graphics", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"(*", "Finger", "*)"}], 
+          RowBox[{
+           RowBox[{"Thickness", "[", "0.006", "]"}], ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0"}], "}"}], ",", "Jm", ",", "Jp", ",", 
+              "T"}], "}"}], "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{"Fingertip", " ", "position"}], "*)"}], "objectColor", 
+           ",", 
+           RowBox[{"PointSize", "[", "0.017", "]"}], ",", 
+           RowBox[{"Point", "[", "T", "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{"Object", " ", "O"}], "*)"}], 
+           RowBox[{"{", 
+            RowBox[{"Blue", ",", 
+             RowBox[{"Thickness", "[", "0.0035", "]"}], ",", 
+             RowBox[{"Line", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "100"}], ",", 
+                  RowBox[{"-", "18"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"100", ",", 
+                  RowBox[{"-", "18"}]}], "}"}]}], "}"}], "]"}]}], "}"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{"Coordinate", " ", "axes"}], "*)"}], "Gray", ",", 
+           RowBox[{"Arrowheads", "[", "0.03", "]"}], ",", 
+           RowBox[{"Thickness", "[", "0.002", "]"}], ",", 
+           RowBox[{"Arrow", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "100"}], ",", "0"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"100", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Arrow", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0", ",", 
+                RowBox[{"-", "100"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "100"}], "}"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Text", "[", 
+            RowBox[{"\"\<x\>\"", ",", 
+             RowBox[{"{", 
+              RowBox[{"100", ",", "100"}], "}"}]}], "]"}], ",", 
+           RowBox[{"Text", "[", 
+            RowBox[{"\"\<y\>\"", ",", 
+             RowBox[{"{", 
+              RowBox[{"100", ",", "100"}], "}"}]}], "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{"Text", " ", "labels"}], "*)"}], "Black", ",", 
+           RowBox[{"Text", "[", 
+            RowBox[{"\"\<Base\>\"", ",", 
+             RowBox[{"Jm", "+", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "12"}], ",", 
+                RowBox[{"-", "6"}]}], "}"}]}]}], "]"}], ",", "Black", ",", 
+           RowBox[{"Text", "[", 
+            RowBox[{"\"\<Middle\>\"", ",", 
+             RowBox[{"Jp", "+", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "10"}], ",", "0.1"}], "}"}]}]}], "]"}], ",", 
+           "Black", ",", 
+           RowBox[{"Text", "[", 
+            RowBox[{"\"\<Distal\>\"", ",", 
+             RowBox[{"T", "+", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "12"}], ",", 
+                RowBox[{"-", "3"}]}], "}"}]}]}], "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{"Object", " ", "label"}], "*)"}], "Black", ",", 
+           RowBox[{"Text", "[", 
+            RowBox[{"\"\<Object O\>\"", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "1.5"}], ",", 
+               RowBox[{"-", "19"}]}], "}"}]}], "]"}]}], "}"}], ",", 
+         RowBox[{"PlotRange", "->", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "100"}], ",", "100"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "100"}], ",", "100"}], "}"}]}], "}"}]}], ",", 
+         RowBox[{"ImageSize", "->", "Large"}], ",", 
+         RowBox[{"Frame", "->", " ", "True"}]}], " ", "]"}]}]}], "]"}], ",", 
+    RowBox[{"(*", 
+     RowBox[{"Angle", " ", "sliders"}], "*)"}], 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Theta]m", ",", "0", ",", "\"\<\[Theta]m\>\""}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"-", "Pi"}], "/", "3"}], ",", 
+      RowBox[{"Pi", "/", "3"}], ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Theta]p", ",", "0", ",", "\"\<\[Theta]p\>\""}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"-", "2"}], 
+       RowBox[{"Pi", "/", "3"}]}], ",", "0", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Theta]d", ",", "0", ",", "\"\<\[Theta]d\>\""}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"-", "2"}], 
+       RowBox[{"Pi", "/", "3"}]}], ",", "0", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.8937836856547413`*^9, 3.8937836856562996`*^9}, {
+   3.89378381172202*^9, 3.8937838135055656`*^9}, 3.8937839518525963`*^9, {
+   3.893783990115611*^9, 3.8937840055496454`*^9}, {3.893784093650372*^9, 
+   3.8937841201489725`*^9}, {3.8937841618582106`*^9, 3.893784162109658*^9}, {
+   3.8937842089901743`*^9, 3.8937843157951097`*^9}, {3.8937844690429554`*^9, 
+   3.893784473525503*^9}, {3.8937845736063113`*^9, 3.8937846833296685`*^9}, {
+   3.893784717478915*^9, 3.8937847965760355`*^9}, {3.8937848282302732`*^9, 
+   3.8937848693143563`*^9}, {3.8937849498695564`*^9, 
+   3.8937849945552454`*^9}, {3.8937850497334013`*^9, 3.893785135901389*^9}, {
+   3.8937851765024257`*^9, 3.8937852320610514`*^9}, {3.893785276068664*^9, 
+   3.8937852779015427`*^9}, {3.893785318335058*^9, 3.8937853242157617`*^9}, {
+   3.8937853771494102`*^9, 3.8937854373401976`*^9}, {3.893785473731594*^9, 
+   3.893785550226734*^9}, {3.893785603856268*^9, 3.893785644027321*^9}, {
+   3.8937858356545706`*^9, 3.8937858627166557`*^9}, {3.8937863120603*^9, 
+   3.8937863525637007`*^9}, {3.8937864174831057`*^9, 3.8937864268816357`*^9}, 
+   3.893786499250486*^9, {3.89378658140725*^9, 3.893786626698861*^9}, {
+   3.8937866732357254`*^9, 3.8937867533508644`*^9}, {3.8937867847890897`*^9, 
+   3.893786819213517*^9}, {3.8937868598590946`*^9, 3.893786864162073*^9}, {
+   3.893787648737089*^9, 3.893787664770008*^9}, {3.8937877339303093`*^9, 
+   3.8937877671897583`*^9}, {3.893787907057802*^9, 3.893787907330573*^9}, {
+   3.893830727321437*^9, 3.893830728458702*^9}, {3.8938308266804066`*^9, 
+   3.8938308767295294`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"71798f43-8731-48b0-8ddb-fec27327ecf7"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Theta]d$$ = -0.7204719152232592, \
+$CellContext`\[Theta]m$$ = 
+    0.004188790204786463, $CellContext`\[Theta]p$$ = -0.24294983187761063`, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Theta]m$$], 0, "\[Theta]m"}, Rational[-1, 3] Pi, 
+      Rational[1, 3] Pi}, {{
+       Hold[$CellContext`\[Theta]p$$], 0, "\[Theta]p"}, Rational[-2, 3] Pi, 
+      0}, {{
+       Hold[$CellContext`\[Theta]d$$], 0, "\[Theta]d"}, Rational[-2, 3] Pi, 
+      0}}, Typeset`size$$ = {576., {279., 282.8911145925522}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Theta]d$$ = 0, $CellContext`\[Theta]m$$ = 
+        0, $CellContext`\[Theta]p$$ = 0}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`Lm$, $CellContext`Lp$, $CellContext`Ld$, \
+$CellContext`Jm$, $CellContext`Jp$, $CellContext`T$, $CellContext`x$, \
+$CellContext`y$, $CellContext`objectColor$}, $CellContext`Lm$ = 
+         39.8; $CellContext`Lp$ = 22.4; $CellContext`Ld$ = 
+         15.8; $CellContext`Jm$ = {$CellContext`Lm$ 
+           Cos[$CellContext`\[Theta]m$$], $CellContext`Lm$ 
+           Sin[$CellContext`\[Theta]m$$]}; $CellContext`Jp$ = \
+$CellContext`Jm$ + {$CellContext`Lp$ 
+            Cos[$CellContext`\[Theta]m$$ + $CellContext`\[Theta]p$$], \
+$CellContext`Lp$ 
+            Sin[$CellContext`\[Theta]m$$ + $CellContext`\[Theta]p$$]}; \
+$CellContext`T$ = $CellContext`Jp$ + {$CellContext`Ld$ 
+            Cos[$CellContext`\[Theta]m$$ + $CellContext`\[Theta]p$$ + \
+$CellContext`\[Theta]d$$], $CellContext`Ld$ 
+            Sin[$CellContext`\[Theta]m$$ + $CellContext`\[Theta]p$$ + \
+$CellContext`\[Theta]d$$]}; $CellContext`x$ = 
+         Part[$CellContext`T$, 1]; $CellContext`y$ = Part[$CellContext`T$, 2]; 
+        If[$CellContext`y$ <= -18, $CellContext`objectColor$ = 
+          Green, $CellContext`objectColor$ = Red]; Graphics[{
+           Thickness[0.006], 
+           
+           Line[{{0, 
+             0}, $CellContext`Jm$, $CellContext`Jp$, $CellContext`T$}], \
+$CellContext`objectColor$, 
+           PointSize[0.017], 
+           Point[$CellContext`T$], {Blue, 
+            Thickness[0.0035], 
+            Line[{{-100, -18}, {100, -18}}]}, Gray, 
+           Arrowheads[0.03], 
+           Thickness[0.002], 
+           Arrow[{{-100, 0}, {100, 0}}], 
+           Arrow[{{0, -100}, {0, 100}}], 
+           Text["x", {100, 100}], 
+           Text["y", {100, 100}], Black, 
+           Text["Base", $CellContext`Jm$ + {-12, -6}], Black, 
+           Text["Middle", $CellContext`Jp$ + {-10, 0.1}], Black, 
+           Text["Distal", $CellContext`T$ + {-12, -3}], Black, 
+           Text["Object O", {-1.5, -19}]}, 
+          PlotRange -> {{-100, 100}, {-100, 100}}, ImageSize -> Large, Frame -> 
+          True]], "Specifications" :> {{{$CellContext`\[Theta]m$$, 0, 
+          "\[Theta]m"}, Rational[-1, 3] Pi, Rational[1, 3] Pi, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Theta]p$$, 0, "\[Theta]p"}, 
+         Rational[-2, 3] Pi, 0, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Theta]d$$, 0, "\[Theta]d"}, 
+         Rational[-2, 3] Pi, 0, Appearance -> "Labeled"}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{626., {345.13403309800196`, 350.86596690199804`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.893787936520712*^9, 3.893830733258461*^9, {3.893830828480915*^9, 
+   3.8938308787227592`*^9}, {3.893831111593927*^9, 3.8938311140573626`*^9}, 
+   3.8938312949973583`*^9, 3.8938313918917036`*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"d3addfd8-6344-40df-b447-545dd0b44f92"]
+}, Open  ]]
+},
+WindowSize->{1440., 741.75},
+WindowMargins->{{-6, Automatic}, {Automatic, -6}},
+TaggingRules-><|"TryRealOnly" -> False|>,
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"16b96a01-ec6a-487b-aa65-e6e49305753c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 9842, 236, 333, "Input",ExpressionUUID->"71798f43-8731-48b0-8ddb-fec27327ecf7"],
+Cell[10425, 260, 4529, 86, 715, "Output",ExpressionUUID->"d3addfd8-6344-40df-b447-545dd0b44f92"]
+}, Open  ]]
+}
+]
+*)
+
